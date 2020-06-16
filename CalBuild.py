@@ -61,7 +61,8 @@ def ProcessPointDictionary(pointsDict, pointsList) :
 	for index  in sorted(pointsDict):
 		second_point = index
 		if first_point == -1 :
-			first_point = second_point
+			first_point = index
+			pointsList.append(pointsDict[index])
 			continue
 			
 # have a point pair here
@@ -70,8 +71,10 @@ def ProcessPointDictionary(pointsDict, pointsList) :
 		delta = float(pointsDict[second_point] - pointsDict[first_point]) /  \
 		float(second_point - first_point)
 		
-		
-		for pointer in range(first_point , second_point):
+		pointsList.pop()
+# pop last item
+
+		for pointer in range(first_point , second_point + 1 ):
 			y_val = int(delta * float(pointer - first_point) + pointsDict[first_point])
 			pointsList.append(y_val)
 #			outstring = ' pointer ' + str(pointer) + ' y value ' +  str(y_val) + \
@@ -80,15 +83,7 @@ def ProcessPointDictionary(pointsDict, pointsList) :
 #			print(outstring)
 		prev_first_point = first_point
 		first_point = second_point
-#
-#   Do one more to end the  final segment		
-	y_val = int(delta * float(second_point - prev_first_point) + pointsDict[prev_first_point])
-	pointsList.append(y_val)
-	
-#	outstring = 'Final:  pointer ' + str(second_point) + ' y value ' +  str(y_val) + \
-#	' pointslist length: ' + str(len(pointsList))
-#	print(outstring)
-
+# 
 		
 #	print('process list complete')
 	

@@ -1,5 +1,6 @@
 # importing the required module
 import matplotlib.pyplot as plt 
+import matplotlib as mpl
 import argparse
 import os
 import sys
@@ -89,7 +90,7 @@ for ConfigLine in ConfigFileList:
 # config file processing complete
 
 if len(DisplayValue) != 256:
-	outstring = 'Table length of ' + len(DisplayValue) + ' is incorrect.  Should be' + \
+	outstring = 'Table length of ' + str(len(DisplayValue)) + ' is incorrect.  Should be' + \
 	' 256.  Exiting ...... '
 	print(outstring)
 	exit()
@@ -111,7 +112,9 @@ if args.outfile is not None:
 # Generate x axis
 for x in range(0,256):
 	Index.append(x * (2.5 / 255.0))
- 
+
+mpl.rcParams["savefig.directory"] = os.chdir(os.path.dirname(__file__))
+
 fig = plt.figure()
 man = plt.get_current_fig_manager()
 man.canvas.set_window_title(args.infile[0].name)
@@ -122,7 +125,7 @@ plt.plot(Index, N2k, label='N2k' , color='red')
 plt.ylim(0,  255)
 plt.xlim(0.0 , 2.5)
 
-plt.title('Plot of calibration table ' + args.infile[0].name + '\n Analog Input: ' + \
+plt.title('Plot of calibration table: ' + args.infile[0].name + '\n Analog Input: ' + \
 	str(AnalogInput))
 
 # naming the x axis 

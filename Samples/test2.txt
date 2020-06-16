@@ -5,7 +5,7 @@ db '    0204';
 db '    0306';  Analog input: 5
 db '    0408';   Index: False
 db '    050A'; 
-db '    060C';  Shows setting of piecewise segments for n2k an graphicIndex
+db '    060C';  Shows setting of piecewise segments for n2k and graphicIndex
 db '    070E';  and explict override of DisplayValue 122
 db '    0810';   Other Display Values depends on --index flag
 db '    0912';
